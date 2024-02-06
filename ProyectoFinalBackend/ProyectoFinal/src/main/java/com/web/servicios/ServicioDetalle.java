@@ -1,7 +1,7 @@
 package com.web.servicios;
 
-import com.web.gestion.GestionFacturas;
-import com.web.modelos.Factura;
+import com.web.gestion.GestionDetalles;
+import com.web.modelos.Detalle;
 
 import java.util.List;
 
@@ -18,21 +18,21 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
-@Path("facturas")
-public class ServicioFactura {
+@Path("detalles")
+public class ServicioDetalle {
     
     @Inject
-    private GestionFacturas gFacturas;
+    private GestionDetalles gDetalles;
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response crear(Factura factura){
-    	System.out.println(factura);
+    public Response crear(Detalle detalle){
+    	System.out.println(detalle);
         try{
-            gFacturas.guardarFactura(factura);
+            gDetalles.guardarDetalle(detalle);
             ErrorMessage error = new ErrorMessage(1, "OK");
-            //return Response.ok(factura).build();
+            //return Response.ok(detalle).build();
             return Response.status(Response.Status.CREATED)
                 .entity(error)
                 .build();
@@ -44,13 +44,14 @@ public class ServicioFactura {
         }
     }
 
+
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response actualizar(Factura factura){
+    public Response actualizar(Detalle detalle){
         try{
-            gFacturas.guardarFactura(factura);
-            return Response.ok(factura).build();
+            gDetalles.guardarDetalle(detalle);
+            return Response.ok(detalle).build();
         }catch (Exception e) {
             ErrorMessage error = new ErrorMessage(99, e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
@@ -63,7 +64,7 @@ public class ServicioFactura {
     @Produces(MediaType.APPLICATION_JSON)
     public String borrar(@QueryParam("id") int codigo){
         try{
-            gFacturas.borrarFactura(codigo);
+            gDetalles.borrarDetalle(codigo);
             return "OK";
         }catch (Exception e) {
             return "Error";
@@ -76,10 +77,10 @@ public class ServicioFactura {
     public Response leer(@QueryParam("dni")String cedula, @QueryParam("nombre") String nombre){
         try{
             System.out.println("cedula: " + cedula + ", nombre = " + nombre);
-            Factura cli = gFacturas.getFacturaPorCedula(cedula);
+            Detalle cli = gDetalles.getDetallePorCedula(cedula);
             return Response.ok(cli).build();
         }catch (Exception e) {
-            ErrorMessage error = new ErrorMessage(4, "Factura no existe");
+            ErrorMessage error = new ErrorMessage(4, "Detalle no existe");
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(error)
                 .build();
@@ -92,10 +93,10 @@ public class ServicioFactura {
     public Response leer2(@PathParam("dni")String cedula,@PathParam("nombre") String nombre) {
     	try{
             System.out.println("cedula: " + cedula + ", nombre = " + nombre);
-            Factura cli = gFacturas.getFacturaPorCedula(cedula);
+            Detalle cli = gDetalles.getDetallePorCedula(cedula);
             return Response.ok(cli).build();
         }catch (Exception e) {
-            ErrorMessage error = new ErrorMessage(4, "Factura no existe");
+            ErrorMessage error = new ErrorMessage(4, "Detalle no existe");
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(error)
                 .build();
@@ -106,13 +107,13 @@ public class ServicioFactura {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("list")
-    public Response getFactura(){
+    public Response getDetalle(){
     	System.out.println("Listando");
-    	List<Factura> facturas = gFacturas.getFacturas();
-    	if(facturas.size() > 0)
-            return Response.ok(facturas).build();
+    	List<Detalle> detalles = gDetalles.getDetalles();
+    	if(detalles.size() > 0)
+            return Response.ok(detalles).build();
     	
-    	ErrorMessage error = new ErrorMessage(6, "No se registran facturas");
+    	ErrorMessage error = new ErrorMessage(6, "No se registran detalles");
     	return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
             .entity(error)
             .build();

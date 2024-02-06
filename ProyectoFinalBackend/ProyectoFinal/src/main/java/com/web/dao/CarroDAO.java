@@ -32,6 +32,16 @@ public class CarroDAO{
         return carro;
     }
 
+    public Carro buscarCarroUsuario(int id){
+        String sql = "SELECT * FROM carros WHERE idusuario = :id";
+        Query q = em.createNativeQuery(sql, Carro.class);
+        q.setParameter("id", id);
+        List<Carro> carros = q.getResultList();
+        if(carros != null && carros.size() > 0)
+            return carros.get(0);
+        return null;
+    }
+
     public List<Carro> getAll(){
         String sentencia = "SELECT c FROM Carro c";
         Query q = em.createQuery(sentencia, Carro.class);

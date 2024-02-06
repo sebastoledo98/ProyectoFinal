@@ -32,10 +32,31 @@ public class UsuarioDAO {
         return usuario;
     }
 
+    public Usuario login(String usuario, String pass){
+        String sql = "SELECT * FROM usuarios WHERE usuario = :usr AND password = :pass";
+        Query q = em.createNativeQuery(sql, Usuario.class);
+        q.setParameter("usr", usuario);
+        q.setParameter("pass",pass);
+        List<Usuario> usuarios = q.getResultList();
+        if(usuarios.size() > 0)
+            return usuarios.get(0);
+        return null;
+    }
+
     public Usuario getUsuarioPorId(int id) {
         String sentencia = "SELECT u FROM Usuario u WHERE u.id = :id";
         Query q = em.createQuery(sentencia, Usuario.class);
         q.setParameter("id",id);
+        List<Usuario> usuarios = q.getResultList();
+        if(usuarios.size() > 0)
+            return usuarios.get(0);
+        return null;
+    }
+
+    public Usuario getUsuario(String usuario){
+        String sql = "SELECT * FROM usarios WHERE usuario = :usr";
+        Query q = em.createNativeQuery(sql,Usuario.class);
+        q.setParameter("usr",usuario);
         List<Usuario> usuarios = q.getResultList();
         if(usuarios.size() > 0)
             return usuarios.get(0);

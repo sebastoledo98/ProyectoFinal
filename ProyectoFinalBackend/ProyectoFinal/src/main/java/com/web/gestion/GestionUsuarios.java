@@ -38,9 +38,17 @@ public class GestionUsuarios {
     }
 
     public Usuario getUsuarioPorId(int id) throws Exception{
-        //if(cedula.length() != 10)
-            //throw new Exception("Cedula incorrecta");
-        return usuarioDao.getUsuarioPorId(id);
+        Usuario usr = usuarioDao.getUsuarioPorId(id);
+        if(usr == null)
+            throw new Exception("No existe el usuario con id " + id);
+        return usr;
+    }
+
+    public Usuario getUsuario(String usuario) throws Exception{
+        Usuario usr = usuarioDao.getUsuario(usuario);
+        if(usr == null)
+            throw new Exception("No existe el usuario " + usuario);
+        return usr;
     }
 
     public void borrarUsuario(int id){
@@ -49,5 +57,16 @@ public class GestionUsuarios {
 
     public List<Usuario> getUsuarios(){
         return usuarioDao.getAll();
+    }
+
+    public Usuario login(String usuario, String pass) throws Exception{
+        System.out.println("Usuario: " + usuario);
+        System.out.println("Contrasenia: " + pass);
+        Usuario usr = usuarioDao.login(usuario, pass);
+        if(usr != null)
+            return usr;
+        else{
+            throw new Exception("Error en el login, verificar el nombre de usuario y la contrasenia");
+        }
     }
 }

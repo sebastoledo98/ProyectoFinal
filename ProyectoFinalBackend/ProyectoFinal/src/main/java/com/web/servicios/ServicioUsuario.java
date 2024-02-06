@@ -70,6 +70,22 @@ public class ServicioUsuario {
         }
     }
 
+    @GET
+    @Path("login")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response leer(@QueryParam("usr")String usuario, @QueryParam("pass") String password){
+        try{
+            System.out.println("usuario: " + usuario + ", password = " + password);
+            Usuario cli = gUsuarios.login(usuario, password);
+            return Response.ok(cli).build();
+        }catch (Exception e) {
+            ErrorMessage error = new ErrorMessage(4, "Usuario no existe");
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                .entity(error)
+                .build();
+        }
+    }
+
     /*
     @GET
     @Produces(MediaType.APPLICATION_JSON)

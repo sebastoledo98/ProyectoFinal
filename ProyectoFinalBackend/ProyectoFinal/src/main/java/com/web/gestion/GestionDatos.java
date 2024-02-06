@@ -19,11 +19,11 @@ public class GestionDatos {
     @Inject
     private GestionUsuarios gUsuarios;
     @Inject
-    private GestionCarros gCarros;
+    private GestionDetalles gDetalles;
     @Inject
     private GestionCategorias gCategorias;
     @Inject
-    private GestionFacturas gFacturas;
+    private GestionCarros gCarros;
     @Inject
     private GestionProductos gProductos;
 
@@ -43,6 +43,7 @@ public class GestionDatos {
         usuario.setUbicacion("Cuenca");
         usuario.setDireccion("Av. Don Bosco");
         usuario.setTelefono("0986532147");
+        usuario.setSaldo(120.00);
         System.out.println(usuario);
         gUsuarios.guardarUsuario(usuario);
 
@@ -57,6 +58,7 @@ public class GestionDatos {
         usuario.setUbicacion("Quito");
         usuario.setDireccion("Av. Don Bosco");
         usuario.setTelefono("0986532147");
+        usuario.setSaldo(325.00);
         gUsuarios.guardarUsuario(usuario);
 
         //Categoria 1
@@ -93,58 +95,58 @@ public class GestionDatos {
         producto.setCategoria(categoria);
         gProductos.guardarProducto(producto);
 
-        //Factura 1
-        Factura factura = new Factura();
-        factura.setId(1);
-        factura.setUsuario(gUsuarios.leerUsuario(1));
-        factura.setNumero("001-001-1234");
-        factura.setFecha(LocalDateTime.now());
-
-        //Detalle 1
+        //Carro 1
         Carro carro = new Carro();
         carro.setId(1);
-        carro.setFactura(factura);
-        carro.setProducto(producto);
-        carro.setCantidad(5);
-        carro.setSubtotal();
+        carro.setUsuario(gUsuarios.leerUsuario(1));
+        carro.setNumero("001-001-1234");
+        carro.setFecha(LocalDateTime.now());
 
-        factura.setTotal(carro.getSubtotal());
-        factura.setDescuento(0.00);
-        gFacturas.guardarFactura(factura);
+        //Detalle 1
+        Detalle detalle = new Detalle();
+        detalle.setId(1);
+        detalle.setCarro(carro);
+        detalle.setProducto(producto);
+        detalle.setCantidad(5);
+        detalle.setSubtotal();
+
+        carro.setTotal(detalle.getSubtotal());
+        carro.setDescuento(0.00);
         gCarros.guardarCarro(carro);
+        gDetalles.guardarDetalle(detalle);
 
-        //Factura 2
-        factura = new Factura();
-        factura.setId(2);
-        factura.setUsuario(gUsuarios.leerUsuario(2));
-        factura.setNumero("002-002-5678");
-        factura.setFecha(LocalDateTime.now());
-        factura.setDescuento(1.00);
-        factura.setTotal(0.00);
-        gFacturas.guardarFactura(factura);
-
-        //Detalle 2
+        //Carro 2
         carro = new Carro();
         carro.setId(2);
-        carro.setFactura(factura);
-        carro.setProducto(gProductos.leerProducto(1));
-        carro.setCantidad(5);
-        carro.setSubtotal();
+        carro.setUsuario(gUsuarios.leerUsuario(2));
+        carro.setNumero("002-002-5678");
+        carro.setFecha(LocalDateTime.now());
+        carro.setDescuento(1.00);
+        carro.setTotal(0.00);
         gCarros.guardarCarro(carro);
-        double tot = carro.getSubtotal();
+
+        //Detalle 2
+        detalle = new Detalle();
+        detalle.setId(2);
+        detalle.setCarro(carro);
+        detalle.setProducto(gProductos.leerProducto(1));
+        detalle.setCantidad(5);
+        detalle.setSubtotal();
+        gDetalles.guardarDetalle(detalle);
+        double tot = detalle.getSubtotal();
 
         //Detalle 3
-        carro = new Carro();
-        carro.setId(3);
-        carro.setFactura(factura);
-        carro.setProducto(gProductos.leerProducto(2));
-        carro.setCantidad(2);
-        carro.setSubtotal();
-        gCarros.guardarCarro(carro);
-        tot = carro.getSubtotal();
+        detalle = new Detalle();
+        detalle.setId(3);
+        detalle.setCarro(carro);
+        detalle.setProducto(gProductos.leerProducto(2));
+        detalle.setCantidad(2);
+        detalle.setSubtotal();
+        gDetalles.guardarDetalle(detalle);
+        tot = detalle.getSubtotal();
 
-        factura.setTotal(tot);
-        gFacturas.guardarFactura(factura);
+        carro.setTotal(tot);
+        gCarros.guardarCarro(carro);
 
         //Listar Clientes
         List<Usuario> lista = gUsuarios.getUsuarios();
@@ -164,16 +166,16 @@ public class GestionDatos {
             System.out.println(p);
         }
 
-        //Listar Carros
-        List<Carro> carros = gCarros.getCarros();
-        for(Carro c : carros){
+        //Listar Detalles
+        List<Detalle> detalles = gDetalles.getDetalles();
+        for(Detalle c : detalles){
             System.out.println(c);
         }
 
-        //Listar Facturas
-        System.out.println("--------------Facturas--------------");
-        List<Factura> facturas = gFacturas.getFacturas();
-        for(Factura f : facturas){
+        //Listar Carros
+        System.out.println("--------------Carros--------------");
+        List<Carro> carros = gCarros.getCarros();
+        for(Carro f : carros){
             System.out.println(f);
         }
     }

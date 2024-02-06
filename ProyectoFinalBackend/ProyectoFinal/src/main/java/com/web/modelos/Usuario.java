@@ -25,6 +25,7 @@ public class Usuario {
     private String ubicacion;
     private String direccion;
     private String telefono;
+    private double saldo = 500.00;
 
     //@OneToMany(mappedBy="idFacturas")
     //private List<Factura> facturas;
@@ -98,6 +99,14 @@ public class Usuario {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public double getSaldo(){
+        return this.saldo;
+    }
+
+    public void setSaldo(double saldo){
+        this.saldo = saldo;
     }
 
     /*

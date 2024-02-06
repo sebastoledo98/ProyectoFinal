@@ -32,6 +32,20 @@ public class GestionCarros {
             throw new Exception("Carro no existe");
     }
 
+    public Carro buscarCarroUsuario(int id) throws Exception{
+        Carro carro = carroDao.buscarCarroUsuario(id);
+        if(carro == null)
+            throw new Exception("No existe un carro asociado con ese usuario");
+        return carro;
+    }
+
+    public Carro leerCarro(int id) throws Exception{
+        Carro carro = carroDao.read(id);
+        if(carro != null)
+            return carroDao.read(id);
+        throw new Exception("Carro no encontrado");
+    }
+
     public void borrarCarro(int id){
         carroDao.remove(id);
     }
