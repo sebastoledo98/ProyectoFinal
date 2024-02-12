@@ -21,6 +21,7 @@ public class Producto {
     private String descripcion;
     private double precio;
     private int stock;
+    private String imagen;
 
     //Relaciones
     @ManyToOne
@@ -67,6 +68,14 @@ public class Producto {
         this.stock = stock;
     }
 
+    public String getImagen(){
+        return this.imagen;
+    }
+
+    public void setImagen(String imagen){
+        this.imagen = imagen;
+    }
+
     public Categoria getCategoria(){
         return this.categoria;
     }
@@ -76,6 +85,6 @@ public class Producto {
     }
 
     public String toString(){
-        return "Producto [codigo = " + id + ", descripcion = " + descripcion + ", precio = " + precio + ", stock = " + stock + ", categoria = " + categoria + "]";
+        return "Producto [codigo = " + id + ", descripcion = " + descripcion + ", precio = " + precio + ", stock = " + stock + ", imagen = " + imagen + ", categoria = " + categoria + "]";
     }
 }

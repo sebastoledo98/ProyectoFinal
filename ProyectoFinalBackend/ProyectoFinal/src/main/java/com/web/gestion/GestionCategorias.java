@@ -29,11 +29,15 @@ public class GestionCategorias {
     	if(cat != null) 
             categoriaDao.update(categoria);
         else
-            throw new Exception("Categorias no existe");
+            throw new Exception("Categoria no existe");
     }
 
     public void borrarCategoria(int id){
         categoriaDao.remove(id);
+    }
+
+    public Categoria buscarCategoriaId(int id){
+        return categoriaDao.read(id);
     }
 
     public List<Categoria> getCategorias(){
