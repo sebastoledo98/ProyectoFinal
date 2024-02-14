@@ -43,4 +43,20 @@ public class GestionProductos {
     public List<Producto> getProductos(){
         return productoDao.getAll();
     }
+    
+    public List<Producto> productoCategoria(int idcategoria){
+        return productoDao.productoCategoria(idcategoria);
+    }
+
+    public Producto getClientePorProducto(int codigo) throws Exception{
+        System.out.println("codigoProdGestion=" + codigo);
+        System.out.println("clienteEnviado");
+        return productoDao.getProductoPorCodigo(codigo);
+    }
+
+    public List<Producto> getProductosporCategoria(int codigo) throws Exception{
+        System.out.println("codigoProdCategorias=" + codigo);
+        System.out.println("categoriaEnviado");
+        return productoDao.getProductosCatPorCodigo(codigo);
+    }
 }

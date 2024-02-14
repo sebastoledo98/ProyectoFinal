@@ -75,6 +75,7 @@ public class ServicioUsuario {
     @Produces(MediaType.APPLICATION_JSON)
     public Response leer(@QueryParam("usr")String usuario, @QueryParam("pass") String password){
         try{
+            System.out.println("Login");
             System.out.println("usuario: " + usuario + ", password = " + password);
             Usuario cli = gUsuarios.login(usuario, password);
             return Response.ok(cli).build();
@@ -86,22 +87,7 @@ public class ServicioUsuario {
         }
     }
 
-    /*
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response leer(@QueryParam("dni")String cedula, @QueryParam("nombre") String nombre){
-        try{
-            System.out.println("cedula: " + cedula + ", nombre = " + nombre);
-            Usuario cli = gUsuarios.getUsuarioPorCedula(cedula);
-            return Response.ok(cli).build();
-        }catch (Exception e) {
-            ErrorMessage error = new ErrorMessage(4, "Usuario no existe");
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(error)
-                .build();
-        }
-    }
-    
+    /*   
     @GET
     @Path("{dni}/{nombre}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -123,7 +109,7 @@ public class ServicioUsuario {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("list")
     public Response getUsuario(){
-    	System.out.println("Listando");
+    	System.out.println("Listando Usuarios");
     	List<Usuario> usuarios = gUsuarios.getUsuarios();
     	if(usuarios.size() > 0)
             return Response.ok(usuarios).build();

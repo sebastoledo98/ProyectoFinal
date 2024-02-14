@@ -70,44 +70,35 @@ public class ServicioProducto {
         }
     }
 
-    /*
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response leer(@QueryParam("dni")String cedula, @QueryParam("nombre") String nombre){
+    @Path("list")
+    public Response productoCategoria(@QueryParam("categoria")int idcategoria){
         try{
-            System.out.println("cedula: " + cedula + ", nombre = " + nombre);
-            Producto cli = gProductos.getProductoPorCedula(cedula);
-            return Response.ok(cli).build();
-        }catch (Exception e) {
-            ErrorMessage error = new ErrorMessage(4, "Producto no existe");
+            List<Producto> productos = gProductos.productoCategoria(idcategoria);
+            if(productos.size() > 0)
+                return Response.status(Response.Status.OK)
+                    .entity(productos)
+                    .build();
+            else{
+                ErrorMessage error = new ErrorMessage(6, "No existen productos con esa categoria");
+                return Response.status(Response.Status.NOT_FOUND)
+                    .entity(error)
+                    .build();
+            }
+        }catch(Exception e){	
+            ErrorMessage error = new ErrorMessage(99, "No se registran productos");
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(error)
                 .build();
         }
     }
-    
-    @GET
-    @Path("{dni}/{nombre}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response leer2(@PathParam("dni")String cedula,@PathParam("nombre") String nombre) {
-    	try{
-            System.out.println("cedula: " + cedula + ", nombre = " + nombre);
-            Producto cli = gProductos.getProductoPorCedula(cedula);
-            return Response.ok(cli).build();
-        }catch (Exception e) {
-            ErrorMessage error = new ErrorMessage(4, "Producto no existe");
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(error)
-                .build();
-        }
-    }
-    */
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("list")
     public Response getProducto(){
-    	System.out.println("Listando");
+    	System.out.println("Listando Productos");
     	List<Producto> productos = gProductos.getProductos();
     	if(productos.size() > 0)
             return Response.ok(productos).build();
@@ -118,4 +109,34 @@ public class ServicioProducto {
             .build();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response leer(@QueryParam("codigo")int id){
+        try{
+            System.out.println("Codigo del producto: " + id);
+            Producto pro = gProductos.getClientePorProducto(id);
+            return Response.ok(pro).build();
+        }catch (Exception e) {
+            ErrorMessage error = new ErrorMessage(4, "Producto no existe");
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                .entity(error)
+                .build();
+        }
+    }
+
+    @GET
+    @Path("categ")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response leerCat(@QueryParam("codigo")int id){
+        try{
+            System.out.println("Codigo del producto: " + id);
+            List<Producto> pro = gProductos.getProductosporCategoria(id);
+            return Response.ok(pro).build();
+        }catch (Exception e) {
+            ErrorMessage error = new ErrorMessage(4, "Producto no existe");
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                .entity(error)
+                .build();
+        }
+    }
 }

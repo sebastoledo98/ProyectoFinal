@@ -71,44 +71,11 @@ public class ServicioDetalle {
         }
     }
 
-    /*
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response leer(@QueryParam("dni")String cedula, @QueryParam("nombre") String nombre){
-        try{
-            System.out.println("cedula: " + cedula + ", nombre = " + nombre);
-            Detalle cli = gDetalles.getDetallePorCedula(cedula);
-            return Response.ok(cli).build();
-        }catch (Exception e) {
-            ErrorMessage error = new ErrorMessage(4, "Detalle no existe");
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(error)
-                .build();
-        }
-    }
-    
-    @GET
-    @Path("{dni}/{nombre}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response leer2(@PathParam("dni")String cedula,@PathParam("nombre") String nombre) {
-    	try{
-            System.out.println("cedula: " + cedula + ", nombre = " + nombre);
-            Detalle cli = gDetalles.getDetallePorCedula(cedula);
-            return Response.ok(cli).build();
-        }catch (Exception e) {
-            ErrorMessage error = new ErrorMessage(4, "Detalle no existe");
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(error)
-                .build();
-        }
-    }
-    */
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("list")
     public Response getDetalle(){
-    	System.out.println("Listando");
+    	System.out.println("Listando Detalles");
     	List<Detalle> detalles = gDetalles.getDetalles();
     	if(detalles.size() > 0)
             return Response.ok(detalles).build();

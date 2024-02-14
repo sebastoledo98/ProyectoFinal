@@ -70,44 +70,11 @@ public class ServicioCategoria {
         }
     }
 
-    /*
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response leer(@QueryParam("dni")String cedula, @QueryParam("nombre") String nombre){
-        try{
-            System.out.println("cedula: " + cedula + ", nombre = " + nombre);
-            Categoria cli = gCategorias.getCategoriaPorCedula(cedula);
-            return Response.ok(cli).build();
-        }catch (Exception e) {
-            ErrorMessage error = new ErrorMessage(4, "Categoria no existe");
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(error)
-                .build();
-        }
-    }
-    
-    @GET
-    @Path("{dni}/{nombre}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response leer2(@PathParam("dni")String cedula,@PathParam("nombre") String nombre) {
-    	try{
-            System.out.println("cedula: " + cedula + ", nombre = " + nombre);
-            Categoria cli = gCategorias.getCategoriaPorCedula(cedula);
-            return Response.ok(cli).build();
-        }catch (Exception e) {
-            ErrorMessage error = new ErrorMessage(4, "Categoria no existe");
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(error)
-                .build();
-        }
-    }
-    */
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("list")
     public Response getCategoria(){
-    	System.out.println("Listando");
+    	System.out.println("Listando Categorias");
     	List<Categoria> categorias = gCategorias.getCategorias();
     	if(categorias.size() > 0)
             return Response.ok(categorias).build();
@@ -118,4 +85,18 @@ public class ServicioCategoria {
             .build();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response leer(@QueryParam("codigo") int codigo){
+        try{
+            System.out.println("Codigo categoria: " + codigo);
+            Categoria categoria = gCategorias.getCategoriaPorCodigo(codigo);
+            return Response.ok(categoria).build();
+        }catch (Exception e) {
+            ErrorMessage error = new ErrorMessage(4, "Categoria no existe");
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                .entity(error)
+                .build();
+        }
+    }
 }

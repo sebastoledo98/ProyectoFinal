@@ -2,6 +2,7 @@ package com.web.modelos;
 
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -16,11 +17,11 @@ import java.time.LocalDateTime;
 public class Carro{
 
     @Id
-    @Column(name="idFactura")
-    //@GeneratedValue
+    @Column(name="idCarro")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="idUsuario", nullable = true, unique = false, updatable = true)
     private Usuario usuario;
 
@@ -51,16 +52,6 @@ public class Carro{
     public void setUsuario(Usuario usuario){
         this.usuario = usuario;
     }
-
-    /*
-    public Carro getCarro(){
-        return this.carro;
-    }
-
-    public void setCarro(Carro carro){
-        this.carro = carro;
-    }
-    */
 
     public String getNumero(){
         return this.numero;

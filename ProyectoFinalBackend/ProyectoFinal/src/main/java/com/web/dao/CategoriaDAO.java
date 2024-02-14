@@ -1,6 +1,7 @@
 package com.web.dao;
 
 import com.web.modelos.Categoria;
+import com.web.modelos.Producto;
 import java.util.List;
 
 import jakarta.ejb.Stateless;
@@ -36,5 +37,16 @@ public class CategoriaDAO {
         String sentencia = "SELECT c FROM Categoria c";
         Query q = em.createQuery(sentencia, Categoria.class);
         return q.getResultList();
+    }
+
+    public Categoria getCategoriaPorCodigo(int codigo){
+        System.out.println("productoDao:" + codigo);
+        String jpql = "SELECT c FROM Categoria c WHERE c.id = :codigo";
+        Query q = em.createQuery(jpql, Producto.class);
+        q.setParameter("codigo", codigo);
+        List<Categoria> categorias = q.getResultList();
+        if(categorias.size()>0)
+                return categorias.get(0);
+        return null;
     }
 }

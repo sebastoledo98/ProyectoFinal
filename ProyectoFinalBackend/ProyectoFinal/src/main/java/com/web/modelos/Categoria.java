@@ -11,12 +11,13 @@ import jakarta.persistence.Table;
 public class Categoria {
 
     @Id
-    //@GeneratedValue
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="idCategoria")
     private int id;
 
     private String nombre;
     private String descripcion;
+    private String imagen;
 
     public int getId(){
         return this.id;
@@ -42,7 +43,15 @@ public class Categoria {
         this.descripcion = descripcion;
     }
 
+    public String getImagen(){
+        return this.imagen;
+    }
+
+    public void setImagen(String imagen){
+        this.imagen = imagen;
+    }
+
     public String toString(){
-        return "Categoria [codigo = " + id + ", nombre = " + nombre + ", descripcion = " + descripcion + "]";
+        return "Categoria [codigo = " + id + ", nombre = " + nombre + ", descripcion = " + descripcion + ", imagen = " + imagen + "]";
     }
 }

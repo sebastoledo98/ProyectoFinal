@@ -54,7 +54,7 @@ public class UsuarioDAO {
     }
 
     public Usuario getUsuario(String usuario){
-        String sql = "SELECT * FROM usarios WHERE usuario = :usr";
+        String sql = "SELECT * FROM usuarios WHERE usuario = :usr";
         Query q = em.createNativeQuery(sql,Usuario.class);
         q.setParameter("usr",usuario);
         List<Usuario> usuarios = q.getResultList();

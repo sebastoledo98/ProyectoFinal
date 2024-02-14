@@ -28,7 +28,8 @@ public class GestionDatos {
     @PostConstruct
     public void init(){
         System.out.println("iniciando");
-
+        
+        /*
         //usuario 1
         Usuario usuario = new Usuario();
         System.out.println(usuario);
@@ -485,52 +486,16 @@ public class GestionDatos {
         producto.setCategoria(gCategorias.buscarCategoriaId(9));
         gProductos.guardarProducto(producto);
 
-        /*
-        //Categoria 1
-        Categoria categoria = new Categoria();
-        categoria.setId(1);
-        categoria.setNombre("Carnes");
-        categoria.setDescripcion("Carnes de animales para el consumo humano");
-        gCategorias.guardarCategoria(categoria);
-
-        //Producto 1
-        Producto producto = new Producto();
-        producto.setId(1);
-        producto.setNombre("Carne de cerdo");
-        producto.setDescripcion("Carne de cerdo 1KG");
-        producto.setPrecio(10.0);
-        producto.setStock(20);
-        producto.setCategoria(categoria);
-        gProductos.guardarProducto(producto);
-
-        //Categoria 2
-        categoria = new Categoria();
-        categoria.setId(2);
-        categoria.setNombre("Ropa");
-        categoria.setDescripcion("Ropa deportiva unisex");
-        gCategorias.guardarCategoria(categoria);
-
-        //Producto 2
-        producto = new Producto();
-        producto.setId(2);
-        producto.setNombre("Calentador Gris");
-        producto.setDescripcion("Calentador Deportivo Color Gris Unisex");
-        producto.setPrecio(25.0);
-        producto.setStock(90);
-        producto.setCategoria(categoria);
-        gProductos.guardarProducto(producto);
-        */
-
         //Carro 1
         Carro carro = new Carro();
-        carro.setId(1);
+        //carro.setId(1);
         carro.setUsuario(gUsuarios.leerUsuario(1));
         carro.setNumero("001-001-1234");
         carro.setFecha(LocalDateTime.now());
 
         //Detalle 1
         Detalle detalle = new Detalle();
-        detalle.setId(1);
+        //detalle.setId(1);
         detalle.setCarro(carro);
         detalle.setProducto(producto);
         detalle.setCantidad(5);
@@ -543,7 +508,7 @@ public class GestionDatos {
 
         //Carro 2
         carro = new Carro();
-        carro.setId(2);
+        //carro.setId(2);
         carro.setUsuario(gUsuarios.leerUsuario(2));
         carro.setNumero("002-002-5678");
         carro.setFecha(LocalDateTime.now());
@@ -553,7 +518,7 @@ public class GestionDatos {
 
         //Detalle 2
         detalle = new Detalle();
-        detalle.setId(2);
+        //detalle.setId(2);
         detalle.setCarro(carro);
         detalle.setProducto(gProductos.leerProducto(1));
         detalle.setCantidad(5);
@@ -563,16 +528,17 @@ public class GestionDatos {
 
         //Detalle 3
         detalle = new Detalle();
-        detalle.setId(3);
+        //detalle.setId(3);
         detalle.setCarro(carro);
         detalle.setProducto(gProductos.leerProducto(2));
         detalle.setCantidad(2);
         detalle.setSubtotal();
         gDetalles.guardarDetalle(detalle);
-        tot = detalle.getSubtotal();
+        tot = detalle.getSubtotal() + tot;
 
         carro.setTotal(tot);
         gCarros.guardarCarro(carro);
+        */
 
         //Listar Clientes
         List<Usuario> lista = gUsuarios.getUsuarios();

@@ -32,10 +32,29 @@ public class CarroDAO{
         return carro;
     }
 
-    public Carro buscarCarroUsuario(int id){
+    public List<Carro> buscarCarroUsuario(int id){
         String sql = "SELECT * FROM carros WHERE idusuario = :id";
         Query q = em.createNativeQuery(sql, Carro.class);
         q.setParameter("id", id);
+        List<Carro> carros = q.getResultList();
+        if(carros != null && carros.size() > 0)
+            return carros;
+        return null;
+    }
+
+    public Carro ultimoCarroUsuario(int idusuario){
+        String sql = "SELECT * FROM carros WHERE idusuario = :idusr ORDER BY 1 DESC";
+        Query q = em.createNativeQuery(sql, Carro.class);
+        q.setParameter("idusr",idusuario);
+        List<Carro> carros = q.getResultList();
+        if(carros != null && carros.size() > 0)
+            return carros.get(0);
+        return null;
+    }
+
+    public Carro ultimoCarro(){
+        String sql = "SELECT * FROM carros ORDER BY 1 DESC";
+        Query q = em.createNativeQuery(sql, Carro.class);
         List<Carro> carros = q.getResultList();
         if(carros != null && carros.size() > 0)
             return carros.get(0);

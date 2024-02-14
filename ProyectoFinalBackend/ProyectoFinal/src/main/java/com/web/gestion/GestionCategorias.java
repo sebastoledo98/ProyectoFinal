@@ -43,4 +43,11 @@ public class GestionCategorias {
     public List<Categoria> getCategorias(){
         return categoriaDao.getAll();
     }
+
+    public Categoria getCategoriaPorCodigo(int codigo) throws Exception{
+        System.out.println("codigoCategGestion=" + codigo);
+        System.out.println("productosEnviado");
+        return categoriaDao.getCategoriaPorCodigo(codigo);
+    }
+
 }

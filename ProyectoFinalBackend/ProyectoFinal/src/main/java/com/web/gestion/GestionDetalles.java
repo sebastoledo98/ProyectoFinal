@@ -35,8 +35,29 @@ public class GestionDetalles {
     public void borrarDetalle(int id){
         detalleDao.remove(id);
     }
+    
+    public Detalle leer(int id){
+        return detalleDao.read(id);
+    }
+
+    public Detalle buscarProductoCarro(int idusuario, int idproducto, int idcarro){
+        Detalle detalle = detalleDao.productoCarro(idusuario, idproducto, idcarro);
+        return detalle;
+    }
+
+    public void borrarProductoCarro(int idcarro, int idproducto){
+        detalleDao.borrarProductoCarro(idcarro, idproducto);
+    }
+
+    public void borrarDetalleCarro(int idcarro){
+        detalleDao.borrarCarro(idcarro);
+    }
 
     public List<Detalle> getDetalles(){
         return detalleDao.getAll();
+    }
+
+    public List<Detalle> detalleCarro(int idcarro){
+        return detalleDao.detalleCarro(idcarro);
     }
 }

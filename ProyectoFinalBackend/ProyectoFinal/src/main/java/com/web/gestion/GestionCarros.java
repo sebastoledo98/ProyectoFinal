@@ -32,11 +32,17 @@ public class GestionCarros {
             throw new Exception("Carro no existe");
     }
 
-    public Carro buscarCarroUsuario(int id) throws Exception{
-        Carro carro = carroDao.buscarCarroUsuario(id);
-        if(carro == null)
-            throw new Exception("No existe un carro asociado con ese usuario");
-        return carro;
+    public Carro buscarIdCarroUsuario(int idusuario, int idcarro){
+        List<Carro> carros = carroDao.buscarCarroUsuario(idusuario);
+        for(Carro c : carros)
+            if(c.getId() == idcarro)
+                return c;
+        return null;
+    }
+
+    public List<Carro> buscarCarroUsuario(int idusuario){
+        List<Carro> carros = carroDao.buscarCarroUsuario(idusuario);
+        return carros;
     }
 
     public Carro leerCarro(int id) throws Exception{
@@ -53,4 +59,15 @@ public class GestionCarros {
     public List<Carro> getCarros(){
         return carroDao.getAll();
     }
+
+    public Carro obtenerUltimoCarroUsuario(int idusuario){
+        Carro carro = carroDao.ultimoCarroUsuario(idusuario);
+        return carro;
+    }
+
+    public Carro obtenerUltimoCarro(){
+        Carro carro = carroDao.ultimoCarro();
+        return carro;
+    }
+
 }

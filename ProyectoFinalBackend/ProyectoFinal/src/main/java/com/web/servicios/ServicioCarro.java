@@ -70,44 +70,11 @@ public class ServicioCarro {
         }
     }
 
-    /*
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response leer(@QueryParam("dni")String cedula, @QueryParam("nombre") String nombre){
-        try{
-            System.out.println("cedula: " + cedula + ", nombre = " + nombre);
-            Carro cli = gCarros.getCarroPorCedula(cedula);
-            return Response.ok(cli).build();
-        }catch (Exception e) {
-            ErrorMessage error = new ErrorMessage(4, "Carro no existe");
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(error)
-                .build();
-        }
-    }
-    
-    @GET
-    @Path("{dni}/{nombre}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response leer2(@PathParam("dni")String cedula,@PathParam("nombre") String nombre) {
-    	try{
-            System.out.println("cedula: " + cedula + ", nombre = " + nombre);
-            Carro cli = gCarros.getCarroPorCedula(cedula);
-            return Response.ok(cli).build();
-        }catch (Exception e) {
-            ErrorMessage error = new ErrorMessage(4, "Carro no existe");
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(error)
-                .build();
-        }
-    }
-    */
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("list")
     public Response getCarro(){
-    	System.out.println("Listando");
+    	System.out.println("Listando Carros");
     	List<Carro> carros = gCarros.getCarros();
     	if(carros.size() > 0)
             return Response.ok(carros).build();

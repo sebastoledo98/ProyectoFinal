@@ -37,4 +37,37 @@ public class ProductoDAO {
         Query q = em.createQuery(sentencia, Producto.class);
         return q.getResultList();
     }
+
+    public List<Producto> productoCategoria(int idcategoria){
+        String sql = "SELECT * FROM productos WHERE idcategoria = :idcat";
+        Query q = em.createNativeQuery(sql, Producto.class);
+        q.setParameter("idcat",idcategoria);
+        List<Producto> detalles = q.getResultList();
+        if(detalles != null && detalles.size() > 0)
+            return detalles;
+        return null;
+    }
+
+    public Producto getProductoPorCodigo(int codigo){
+        System.out.println("productoDao:" + codigo);
+        String jpql = "SELECT c FROM Producto c WHERE c.id = :codigo";
+        Query q = em.createQuery(jpql, Producto.class);
+        q.setParameter("codigo", codigo);
+        List<Producto> productos = q.getResultList();
+        if(productos.size()>0)
+            return productos.get(0);
+        return null;
+    }
+
+    public List<Producto> getProductosCatPorCodigo(int codigo){
+        System.out.println("productoCategoriaDao:" + codigo);
+        String jpql = "SELECT p FROM Producto p JOIN p.categoria c WHERE c.id = :codigo";
+        Query q = em.createQuery(jpql, Producto.class);
+        q.setParameter("codigo", codigo);
+        List<Producto> productos = q.getResultList();
+        if(productos.size()> 0)
+            return productos;
+        return null;
+    }
+
 }
