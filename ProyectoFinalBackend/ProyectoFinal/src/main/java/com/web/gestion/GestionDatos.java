@@ -10,25 +10,27 @@ import java.time.LocalDateTime;
 
 import com.web.modelos.*;
 
-@Singleton
-@Startup
+@Singleton//anotacion para aplicar el patron singleton en la clase
+@Startup//anotacion para especificar que se ejecute la clase cuando se inicie la aplicacion
 public class GestionDatos {
 
-    @Inject
+    @Inject//injectamos la clase para no necesitar inicializarla
     private GestionUsuarios gUsuarios;
-    @Inject
+    @Inject//injectamos la clase para no necesitar inicializarla
     private GestionDetalles gDetalles;
-    @Inject
+    @Inject//injectamos la clase para no necesitar inicializarla
     private GestionCategorias gCategorias;
-    @Inject
+    @Inject//injectamos la clase para no necesitar inicializarla
     private GestionCarros gCarros;
-    @Inject
+    @Inject//injectamos la clase para no necesitar inicializarla
     private GestionProductos gProductos;
 
     @PostConstruct
+    //metodo a ejecutarse cuando se inicie la apliacion
     public void init(){
         System.out.println("iniciando");
         
+        //se ingresan datos iniciales para realizar las prubas con la aplicacion
         /*
         //usuario 1
         Usuario usuario = new Usuario();
@@ -74,7 +76,6 @@ public class GestionDatos {
         gCategorias.guardarCategoria(categoria);
 
         categoria = new Categoria();
-        categoria.setId(3);
         categoria.setNombre("Deportes");
         categoria.setDescripcion("Implementos para ejercicio y deportes");
         gCategorias.guardarCategoria(categoria);
@@ -540,6 +541,7 @@ public class GestionDatos {
         gCarros.guardarCarro(carro);
         */
 
+        //metodos para listar y verificar que se ingresaron los datos
         //Listar Clientes
         List<Usuario> lista = gUsuarios.getUsuarios();
         for(Usuario u : lista){

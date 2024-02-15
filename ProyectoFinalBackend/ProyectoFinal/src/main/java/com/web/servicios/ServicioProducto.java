@@ -14,29 +14,30 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
-@Path("productos")
+@Path("productos")//ruta para acceder a la clase
 public class ServicioProducto {
     
-    @Inject
+    @Inject//injectamos la clase para no necesitar inicializarla
     private GestionProductos gProductos;
 
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @POST//especificamos que el servicio es de tipo POST
+    @Produces(MediaType.APPLICATION_JSON)//especificamos que produce un JSON como resultado
+    @Consumes(MediaType.APPLICATION_JSON)//especificamos que consume un objeto JSON
+    //metodo para guardar el objeto
     public Response crear(Producto producto){
-    	System.out.println(producto);
+    	System.out.println(producto);//imprimimos el objeto que recibimos
         try{
-            gProductos.guardarProducto(producto);
-            ErrorMessage error = new ErrorMessage(1, "OK");
-            //return Response.ok(producto).build();
-            return Response.status(Response.Status.CREATED)
+            gProductos.guardarProducto(producto);//mandamos a guardar el objeto
+            ErrorMessage error = new ErrorMessage(1, "OK");//creamos el objeto de respuesta
+            //creamos la respuesta, le asignamos el estado y el objeto JSON de respuesta
+            return Response.status(Response.Status.OK)
                 .entity(error)
                 .build();
         }catch (Exception e) {
+            //capturamos el error y devolvemos el mensaje
             ErrorMessage error = new ErrorMessage(99, e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(error)
@@ -44,14 +45,16 @@ public class ServicioProducto {
         }
     }
 
-    @PUT
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @PUT//especificamos que el servicio es de tipo PUT
+    @Produces(MediaType.APPLICATION_JSON)//especificamos que produce un JSON como resultado
+    @Consumes(MediaType.APPLICATION_JSON)//especificamos que consume un objeto JSON
+    //metodo para actualizar el objeto
     public Response actualizar(Producto producto){
         try{
-            gProductos.guardarProducto(producto);
-            return Response.ok(producto).build();
+            gProductos.guardarProducto(producto);//mandamos a actualizar el objeto
+            return Response.ok(producto).build();//retornamos un OK y con el objeto del carro encontrado
         }catch (Exception e) {
+            //capturamos el error y devolvemos el mensaje
             ErrorMessage error = new ErrorMessage(99, e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(error)
@@ -59,80 +62,61 @@ public class ServicioProducto {
         }
     }
 
-    @DELETE
-    @Produces(MediaType.APPLICATION_JSON)
+    @DELETE//especificamos que el servicio es de tipo DELETE
+    @Produces(MediaType.APPLICATION_JSON)//especificamos que produce un JSON como resultado
     public String borrar(@QueryParam("id") int codigo){
         try{
-            gProductos.borrarProducto(codigo);
-            return "OK";
+            gProductos.borrarProducto(codigo);//mandamos a eliminar el objeto
+            return "OK";//respondemos con un OK
         }catch (Exception e) {
-            return "Error";
+            return "Error";//respondemos con un Error
         }
     }
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("list")
-    public Response productoCategoria(@QueryParam("categoria")int idcategoria){
-        try{
-            List<Producto> productos = gProductos.productoCategoria(idcategoria);
-            if(productos.size() > 0)
-                return Response.status(Response.Status.OK)
-                    .entity(productos)
-                    .build();
-            else{
-                ErrorMessage error = new ErrorMessage(6, "No existen productos con esa categoria");
-                return Response.status(Response.Status.NOT_FOUND)
-                    .entity(error)
-                    .build();
-            }
-        }catch(Exception e){	
-            ErrorMessage error = new ErrorMessage(99, "No se registran productos");
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(error)
-                .build();
-        }
-    }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("list")
+    @GET//especificamos que el servicio es de tipo GET
+    @Produces(MediaType.APPLICATION_JSON)//especificamos que produce un JSON como resultado
+    @Path("list")//ruta para acceder al servicio
+    //metodo para listar todos los objetos guardados
     public Response getProducto(){
     	System.out.println("Listando Productos");
-    	List<Producto> productos = gProductos.getProductos();
-    	if(productos.size() > 0)
-            return Response.ok(productos).build();
-    	
-    	ErrorMessage error = new ErrorMessage(6, "No se registran productos");
+    	List<Producto> productos = gProductos.getProductos();//obtenemos todos los objetos guardados
+    	if(productos.size() > 0)//verificamos que existan objetos en la base
+            return Response.ok(productos).build();//retornamos un OK y con el objeto del carro encontrado
+    	ErrorMessage error = new ErrorMessage(6, "No se registran productos");//creamos el objeto de respuesta
+        //creamos la respuesta, le asignamos el estado y el objeto JSON de respuesta
     	return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
             .entity(error)
             .build();
     }
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @GET//especificamos que el servicio es de tipo GET
+    @Produces(MediaType.APPLICATION_JSON)//especificamos que produce un JSON como resultado
+    //metodo para obtener el producto mediante el id
     public Response leer(@QueryParam("codigo")int id){
         try{
             System.out.println("Codigo del producto: " + id);
-            Producto pro = gProductos.getClientePorProducto(id);
-            return Response.ok(pro).build();
+            Producto pro = gProductos.getClientePorProducto(id);//obtenemos el producto
+            return Response.ok(pro).build();//retornamos un OK y con el objeto del carro encontrado
         }catch (Exception e) {
-            ErrorMessage error = new ErrorMessage(4, "Producto no existe");
+            ErrorMessage error = new ErrorMessage(4, "Producto no existe");//creamos el objeto de respuesta
+            //creamos la respuesta, le asignamos el estado y el objeto JSON de respuesta
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(error)
                 .build();
         }
     }
 
-    @GET
-    @Path("categ")
-    @Produces(MediaType.APPLICATION_JSON)
+    @GET//especificamos que el servicio es de tipo GET
+    @Path("categ")//ruta para acceder al servicio
+    @Produces(MediaType.APPLICATION_JSON)//especificamos que produce un JSON como resultado
+    //metodo para obtener el producto por categoria
     public Response leerCat(@QueryParam("codigo")int id){
         try{
             System.out.println("Codigo del producto: " + id);
-            List<Producto> pro = gProductos.getProductosporCategoria(id);
-            return Response.ok(pro).build();
+            List<Producto> pro = gProductos.getProductosporCategoria(id);//obtenemos los productos por categoria
+            return Response.ok(pro).build();//retornamos un OK y con el objeto del carro encontrado
         }catch (Exception e) {
+            //capturamos el error y devolvemos el mensaje
             ErrorMessage error = new ErrorMessage(4, "Producto no existe");
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(error)

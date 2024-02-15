@@ -3,7 +3,8 @@ package com.web.servicios;
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
 
-@ApplicationPath("rs")
+//clase para asignar la ruta base de la aplicacion
+@ApplicationPath("rs")//anotacion con la ruta base
 public class PathBase extends Application{
 
 }
