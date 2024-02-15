@@ -1,0 +1,89 @@
+.contIniSes{
+  padding: 25px;
+}
+
+.titulo{
+  width: auto;
+  text-align: center;
+}
+
+.contenedor{
+  width: 400px;
+  height: auto;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.campo{
+  width: auto;
+  height: auto;
+  margin: 4%;
+}
+
+label{
+  color: black;
+  width: 100px;
+  font-size: 18px;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+input{
+  width: 100%;
+  height: 40px;
+  background: #F3F3F3;
+  box-shadow: 3.035381555557251px 3.035381555557251px 2.4283053874969482px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.botones{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+button{
+  width: 250px;
+  height: 40px;
+  border: 2px black solid;
+  gap: 10px;
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: uppercase;
+  border-radius: 10px;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+.aceptar{
+  background: #26905B;
+  width: 300px;
+}
+
+.cancelar{
+  background: #C46161;
+  width: 300px;
+}
+
+.registrarse{
+  text-align: center;
+}
+
+a{
+  width: auto;
+  height: auto;
+  text-align: center;
+}

@@ -1,0 +1,27 @@
+<div class="contIniSes">
+  <div class="contenedor">
+    <div class="titulo">
+      <h2>INICIAR SESION</h2>
+    </div>
+    <form>
+      <b>{{mensaje}}</b>
+      <div class="campo">
+        <label for="txtUsuario">Nombre de Usuario</label><br>
+        <input type="text" name="txtUsuario" id="txtUsuario" [(ngModel)]='usuario'>
+      </div>
+      <div class="campo">
+        <label for="txtContra">Contraseña</label><br>
+        <input type="text" name="txtContra" id="txtContra" [(ngModel)]='contrasena'>
+      </div>
+    </form>
+    <div class="botones">
+      <button (click)="IniciarSesion()" type="button" class="aceptar">Iniciar Sesion</button>
+      <button type="button" class="cancelar">Cancelar</button>
+    </div>
+    <div class="registrarse">
+      <a href="#">Registrarse</a>
+    </div>
+  </div>
+</div>
+
+

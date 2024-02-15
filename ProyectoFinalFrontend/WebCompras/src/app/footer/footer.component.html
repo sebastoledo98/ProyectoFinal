@@ -1,0 +1,29 @@
+<footer>
+    <div class="contInfo">
+        <div class="menu">
+            <ul>
+                <li *ngFor="let link of paginas">
+                    <a href="#" [routerLink]="link.path">
+                        <div class="text">
+                            {{link.title}}
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="contCont">
+            <div class="contDirec">
+                <p>Dirección:</p>
+                <p>Av. De las Americas y Av. Mexico</p>
+                <p>1104-1102</p>
+            </div>
+            <div class="contTelef">
+                <p>Contactenos</p>
+                <p>(+593)98 356 4710 - (07)410 4891</p>
+            </div>
+        </div>
+    </div>
+    <div (click)="IrInic()" class="contLogo">
+        <img src="../../assets/imagenes/logo1.png" alt="logo">
+    </div>
+</footer>

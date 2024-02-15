@@ -1,0 +1,44 @@
+<section>
+    <div class="contImg">
+        <img src="../../../assets/imagenes/inicio.jpg" alt="Ropa">
+    </div>
+    <div class="contTit">
+        <h1>{{titulo}}</h1>
+    </div>
+    <div class="contProd">
+        <div *ngFor='let prod of ListaDetalles | async' class="cardProd">
+            <div class="contImgProd">
+                <img src="../../../assets/productos/{{prod.producto.imagen}}.jpg" alt="Producto">
+            </div>
+            <div class="contCardInfo">
+                <div class="info">
+                    <div class="infoTit">
+                        <b>{{prod.producto.nombre}}</b>
+                    </div>
+                    <div class="infoCa">
+                        <p><b>Precio: </b>{{prod.producto.precio}}</p>
+                        <p><b>Cantidad: </b>{{prod.cantidad}}</p>
+                    </div>
+                    <div class="infoPrec">
+                        <b>Precio Total: ${{prod.subtotal}}</b>
+                    </div>
+                </div>
+                <div (click)="borrarProducto(prod.producto.id)" class="contElim">
+                    <a>Eliminar Producto</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="infoCar">
+        <div class="contPriInfoCar">
+            <div class="contInCaInfo">
+                <p>Cantidad de productos: {{sizeCarrito}}</p>
+                <b class="precioTot">Precio Total: {{precioRed}}</b>
+            </div>
+            <div class="contBot">
+                <button type="button" class="aceptar" (click)="aceptarCompra()">Aceptar Compra</button>
+                <button type="button" class="cancelar" (click)="borrarCarrito()">Cancelar y vaciar carrito</button>
+            </div>
+        </div>
+    </div>
+</section>

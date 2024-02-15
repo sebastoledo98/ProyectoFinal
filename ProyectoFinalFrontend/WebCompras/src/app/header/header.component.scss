@@ -1,0 +1,152 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+/**** HEADER ****/
+
+header{
+  background-color: #184834;
+  padding: 12px;
+  color: white;
+  display: flex;
+  gap: 5px;
+}
+
+.infUser{
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  
+}
+
+.contOpc{
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.contOpc button{
+  width: 110px;
+  height: 40px;
+  border: none;
+  color: white;
+  background-color: #184834;
+  border: 2px solid white;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.contOpc button:hover{
+  cursor: pointer;
+  transform: scale(1.07);
+}
+
+.infUser .imgUser{
+  width: 20%;
+  padding: 5px;
+}
+
+.imgCarrito{
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  transition: 0.2s;
+}
+
+.imgCarrito:hover{
+  cursor: pointer;
+  transform: scale(1.15);
+}
+
+.contLogo{
+  width: 25%;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contLogo img{
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.contLogo:hover{
+  cursor: pointer;
+}
+
+.contBusc{
+  width: 55%;
+  display: flex;
+  align-items: center;
+  padding: 7px;
+  height: auto;
+}
+
+.contBusc input{
+  width: 100%;
+  height: 40px;
+  padding: 7px;
+  border: none;
+}
+
+.contBusc .iconBusc{
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contInput{
+  height: auto;
+  align-items: center;
+  width: 100%;
+}
+
+.busc{
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+img{
+  max-width: 100%;
+  height: 50%;
+}
+
+.buscar{
+  max-width: 50%;
+  height: auto;
+}
+
+//Responsive
+@media screen and (max-width:700px) {
+  header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contBusc{
+    width: 100%;
+  }
+
+  .infUser{
+    width: 100%;
+  }
+
+  .contOpc{
+    width: 100%;
+  }
+}

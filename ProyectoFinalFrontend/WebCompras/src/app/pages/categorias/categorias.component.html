@@ -1,0 +1,17 @@
+<section>
+  <div class="contCat">
+    <div class="titulo">
+      <h1>CATEGORIAS</h1>
+    </div>
+    <div class="contenedor">
+      <div *ngFor="let cat of Listacategorias| async" (click)="IrProductos(cat)" class="contProd">
+        <div class="imgProd">
+          <img src="../../../assets/categorias/{{cat.imagen}}" alt="categorias">
+        </div>
+        <div class="titleProd">
+          <b>{{cat.nombre}}</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

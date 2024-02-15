@@ -1,0 +1,54 @@
+<div class="contReg">
+  <div class="contenedor">
+    <div class="titulo">
+      <h2>REGISTRO DE USUARIO</h2>
+    </div>
+    <form>
+      <div class="campo">
+        <label for="txtUsuario">Nombre de Usuario</label><br>
+        <input type="text" name="txtUsuario" id="txtUsuario" [(ngModel)]='usuario.usuario'>
+      </div>
+      <div class="campo">
+        <label for="txtEmail">E-Mail</label><br>
+        <input type="text" name="txtEmail" id="txtEmail" [(ngModel)]='usuario.email'>
+      </div>
+      <div class="campo">
+        <label for="txtNombres">Nombres</label><br>
+        <input type="text" name="txtNombres" id="txtNombres" [(ngModel)]='usuario.nombres'>
+      </div>
+      <div class="campo">
+        <label for="txtApellidos">Apellidos</label><br>
+        <input type="text" name="txtApellidos" id="txtApellidos" [(ngModel)]='usuario.apellidos'>
+      </div>
+      <div class="campo">
+        <label for="txtDireccion">Dirección</label><br>
+        <input type="text" name="txtDireccion" id="txtDireccion" [(ngModel)]='usuario.direccion'>
+      </div>
+      <div class="campo">
+        <label for="txtTelefono">Telefono</label><br>
+        <input type="text" name="txtTelefono" id="txtTelefono" [(ngModel)]='usuario.telefono'>
+      </div>
+      <div class="campo">
+        <label for="txtCiudad">Ciudad</label><br>        
+        <input type="text" name="txtCiudad" id="txtCiudad" [(ngModel)]='usuario.ubicacion'>
+      </div>
+      <div class="campo">
+        <label for="txtContrasena">Contraseña</label><br>
+        <input type="password" name="txtContrasena" id="txtContrasena" [(ngModel)]='usuario.password' [(ngModel)]='cont'>
+        <b>{{mensajeAviso}}</b>
+      </div>
+      <div class="campo">
+        <label for="txtReContra">Repetir Contraseña</label><br>
+        <input type="password" name="txtReContra" id="txtReContra" [(ngModel)]='contVer'>
+        <b>{{mensajeAviso}}</b>
+      </div>
+      <div class="botones">
+        <button type="button" class="aceptar" (click)="guardarUsuario()">Registrarse</button>
+        <button type="button" class="cancelar" (click)="botonCancelar()">Cancelar</button>
+      </div>
+    </form>
+    <div class="iniSes">
+      <a href="#">Iniciar Sesion</a>
+    </div>
+  </div>  
+</div>

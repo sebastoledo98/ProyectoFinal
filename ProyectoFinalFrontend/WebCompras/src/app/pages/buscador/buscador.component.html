@@ -1,0 +1,25 @@
+<section>
+    <div class="contTit">
+      <h1>{{titulo}}</h1>
+    </div>
+    <div class="contProds">
+      <div *ngFor="let pro of Listaproductos| async" class="contProductos">
+        <div (click)="IrProd(pro)" class="contProd">
+          <div class="imgProd">
+            <img src="../../../assets/productos/{{pro.imagen}}.jpg" alt="">
+          </div>
+          <div class="infoProd">
+            <div class="titleProd">
+              <b>{{pro.nombre}}</b>
+            </div>
+            <div class="DescProd">
+              <p>{{pro.descripcion}}</p>
+            </div>
+            <div class="precioProd">
+              <b>Precio: {{pro.precio}}</b>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+  </section>

@@ -1,0 +1,29 @@
+<section>
+    <div class="contProd">
+        <div class="contImg">
+            <img src="../../../assets/productos/{{producto.imagen}}.jpg" alt="Pantalon negro">
+        </div>
+        <div class="contInfoProd">
+            <div class="tituloProd">
+                <h3>{{producto.nombre}}</h3>
+            </div>
+            <div class="descProd">
+                <p>{{producto.descripcion}}</p>
+            </div>
+            <div class="precio">
+                <b>Precio: ${{producto.precio}}</b>
+            </div>
+            <div class="agregar">
+                <div class="cant">
+                    <form>
+                        <label for="numCantidad">Cantidad:</label>
+                        <input type="number" name="numCantidad" id="numCantidad" [(ngModel)]='cantidad'>
+                    </form>
+                </div>
+                <div class="boton">
+                    <button (click)="AgregarDetalle()">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

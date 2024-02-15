@@ -1,0 +1,30 @@
+.contAcercade{
+    padding: 25px;
+  }
+  
+  .titulo{
+    width: auto;
+    text-align: center;
+  }
+
+  .contenedor{
+    width: auto;
+    height: auto;
+    margin: 0% 20%;
+  }
+
+  p{
+    margin: 5% 0%;
+    font-size: 18px;
+    text-align: justify;
+  }
+
+  @media screen and (max-width:700px) {
+    p{
+        font-size: 15px;
+    }
+
+    .contenedor{
+        margin: 0px
+    }
+  }

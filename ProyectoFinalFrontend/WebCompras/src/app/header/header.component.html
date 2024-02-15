@@ -1,0 +1,38 @@
+<header>
+  <div (click)="IrInic()" class="contLogo">
+    <img src="../../assets/imagenes/logo1.png" alt="logo">
+  </div>
+  <div class="contBusc">
+    <div class="busc">
+      <div class="contInput">
+        <input type="search" [(ngModel)]="busqueda">
+      </div>
+      <div class="iconBusc" (click)="buscar()">
+        <img src="../assets/imagenes/busqueda.png" alt="Buscador" class="buscar">
+      </div>
+    </div>
+  </div>
+  <div (click)="IrCarr()" class="imgCarrito">
+    <img src="../assets/imagenes/carro.png" alt="Carrito" class="carro">
+  </div>
+  
+  <div class="infUser">
+    <div class="contOpc">
+      <button (click)="IrIniSes()">Iniciar Sesion</button>
+      <button (click)="IrReg()">Registrarse</button>
+    </div>
+    <!--
+    <div class="imgUser">
+        <img src="../assets/imagenes/avatar.png" alt="Usuario" class="user">
+    </div>
+    <div class="nomUser">
+      <div class="text">
+        <p>Mi cuenta</p>
+      </div>
+      <div class="nomUser">
+        <p>Nombre Usuario</p>
+      </div>
+    </div>
+    -->
+  </div>
+</header>

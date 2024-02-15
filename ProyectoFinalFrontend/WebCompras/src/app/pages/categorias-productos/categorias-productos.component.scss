@@ -1,0 +1,86 @@
+.contImg{
+    height: 225px;
+    overflow: hidden;
+  }
+  
+  .contImg img{
+    width:100%;
+  }
+  
+  .contTit{
+    height: 60px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .contProductos{
+    padding-top: 20px;
+    padding-bottom: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap:15px;
+  }
+  
+  .contProd{
+    background-color: #d0dccc;
+    width: 300px;
+    height: 350px;
+    border-radius: 15px;
+    transition: 0.4s;
+  }
+  
+  .contProd:hover{
+    transform: scale(1.04);
+    cursor: pointer;
+  }
+  
+  .imgProd{
+    width: auto;
+    height: 150px;
+    overflow: hidden;
+  }
+  
+  .imgProd img{
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  
+  .infoProd{
+    padding: 5px;
+  }
+  
+  .titleProd{
+    margin: 5px;
+    text-align: center;
+    height: auto;
+  }
+  
+  .DescProd{
+    padding: 5px;
+    font-size: 14px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .precioProd{
+    height: auto;
+    padding: 5px;
+    color: green;
+    display: flex;
+    align-items: center;
+  }
+
+  @media screen and (max-width:550px) {
+    .contImg{
+      height: 150px;
+    }
+  }
