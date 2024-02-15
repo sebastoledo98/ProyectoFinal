@@ -79,7 +79,7 @@ public class ServicioTransacciones{
         try{
             Usuario usr = gUsuarios.getUsuarioPorId(idusuario);
             List<Carro> carros = gCarros.buscarCarroUsuario(usr.getId());
-            return Response.status(Response.Status.FOUND)
+            return Response.status(Response.Status.OK)
                 .entity(carros)
                 .build();
         } catch (Exception e){
@@ -89,7 +89,33 @@ public class ServicioTransacciones{
                 .build();
         }
     }
-
+    
+    
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("carroUser")
+    public Response buscarCarroUsuarioUltimo(@QueryParam("usuario") int idusuario){
+        try{
+            Carro carros = gCarros.obtenerUltimoCarroUsuario(idusuario);
+            if(carros.getEstado()) {
+            	return Response.status(Response.Status.OK)
+                        .entity(carros)
+                        .build();
+            }else {
+            	ErrorMessage error = new ErrorMessage(99, "No existe un carro abierto");
+            	return Response.status(Response.Status.NOT_FOUND)
+                        .entity(error)
+                        .build();
+            }
+        } catch (Exception e){
+            ErrorMessage error = new ErrorMessage(99, "No se encuentra un carro asociado a ese usuario");
+            return Response.status(Response.Status.NOT_FOUND)
+                .entity(error)
+                .build();
+        }
+    }
+    
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -97,7 +123,7 @@ public class ServicioTransacciones{
     public Response buscarDetalleCarro(@QueryParam("carro") int idcarro){
         try{
             List<Detalle> detalles = gDetalles.detalleCarro(idcarro);
-            return Response.status(Response.Status.FOUND)
+            return Response.status(Response.Status.OK)
                 .entity(detalles)
                 .build();
         } catch (Exception e){
@@ -110,18 +136,17 @@ public class ServicioTransacciones{
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("confirmar")
     public Response confirmarCarro(@QueryParam("carro") int idcarro, @QueryParam("usuario") int idusuario){
         try{
             Carro carro = gCarros.leerCarro(idcarro);
-            carro.setEstado(true);
+            carro.setEstado(false);
             gCarros.actualizarCarro(carro);
             Usuario usuario = gUsuarios.getUsuarioPorId(idusuario);
             usuario.setSaldo(usuario.getSaldo() - carro.getTotal());
             gUsuarios.actualizarUsuario(usuario);
             return Response.status(Response.Status.OK)
-                .entity(usuario)
+                .entity(carro)
                 .build();
         }catch(Exception e){
             ErrorMessage error = new ErrorMessage(99, "No se encuentra un carro con ese id");
@@ -153,12 +178,12 @@ public class ServicioTransacciones{
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("detalle")
-    public Response crearCarroProducto(@QueryParam("producto") int idproducto, @QueryParam("usuario") int idusuario, @QueryParam("cantidad") int cantidad){
+    public Response crearCarroProducto(@QueryParam("codigo") int idproducto, @QueryParam("usuario") int idusuario, @QueryParam("cantidad") int cantidad){
         try{
             Carro carro = gCarros.obtenerUltimoCarroUsuario(idusuario);
-            if(carro.getEstado()){
+            
+            if(carro!= null && carro.getEstado()){
                 Detalle det = gDetalles.buscarProductoCarro(idusuario, idproducto, carro.getId());
                 if(det != null){
                     det.setCantidad(det.getCantidad() + cantidad);
@@ -184,6 +209,7 @@ public class ServicioTransacciones{
                 carro.setNumero(id + "-" + id + "-" + id);
                 carro.setFecha(LocalDateTime.now());
                 carro.setDescuento((double)(random.nextInt(100)/100));
+                gCarros.guardarCarro(carro);
                 Detalle det = new Detalle();
                 det.setCarro(carro);
                 det.setProducto(gProductos.leerProducto(idproducto));
@@ -235,18 +261,35 @@ public class ServicioTransacciones{
     @Produces(MediaType.APPLICATION_JSON)
     public Response eliminarProducto(@QueryParam("usuario") int idusuario, @QueryParam("carro") int idcarro, @QueryParam("producto") int idproducto){
         try{
-            Carro carro = gCarros.buscarIdCarroUsuario(idcarro, idusuario);
-            if(carro != null){
-                gDetalles.borrarProductoCarro(carro.getId(), idproducto);
+           
+            
+                gDetalles.borrarProductoCarro(idcarro, idproducto);
                 ErrorMessage error = new ErrorMessage(1, "OK");
                 return Response.status(Response.Status.ACCEPTED)
                     .entity(error)
                     .build();
-            }
-            return null;
+            
+         
         }catch(Exception e){
             ErrorMessage error = new ErrorMessage(99, "No se encuentra un carro con ese id");
             return Response.status(Response.Status.NOT_FOUND)
+                .entity(error)
+                .build();
+        }
+    }
+    
+    @GET
+    @Path("prods")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response productosNombre(@QueryParam("nombre") String nombre){
+        try{
+            List<Producto> productos = gProductos.productosNombre(nombre);
+            return Response.status(Response.Status.OK)
+                .entity(productos)
+                .build();
+        }catch(Exception e){
+            ErrorMessage error = new ErrorMessage(99, e.getMessage());
+            return Response.status(Response.Status.OK)
                 .entity(error)
                 .build();
         }

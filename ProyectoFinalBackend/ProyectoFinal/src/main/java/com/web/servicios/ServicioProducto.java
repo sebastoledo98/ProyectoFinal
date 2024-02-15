@@ -73,30 +73,6 @@ public class ServicioProducto {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("list")
-    public Response productoCategoria(@QueryParam("categoria")int idcategoria){
-        try{
-            List<Producto> productos = gProductos.productoCategoria(idcategoria);
-            if(productos.size() > 0)
-                return Response.status(Response.Status.OK)
-                    .entity(productos)
-                    .build();
-            else{
-                ErrorMessage error = new ErrorMessage(6, "No existen productos con esa categoria");
-                return Response.status(Response.Status.NOT_FOUND)
-                    .entity(error)
-                    .build();
-            }
-        }catch(Exception e){	
-            ErrorMessage error = new ErrorMessage(99, "No se registran productos");
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(error)
-                .build();
-        }
-    }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("list")
     public Response getProducto(){
     	System.out.println("Listando Productos");
     	List<Producto> productos = gProductos.getProductos();

@@ -81,7 +81,7 @@ public class ServicioUsuario {
             return Response.ok(cli).build();
         }catch (Exception e) {
             ErrorMessage error = new ErrorMessage(4, "Usuario no existe");
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+            return Response.status(Response.Status.NOT_FOUND)
                 .entity(error)
                 .build();
         }

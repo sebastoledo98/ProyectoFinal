@@ -16,7 +16,7 @@ public class Producto {
 
     @Id
     @Column(name="idProducto")
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
     private String nombre;

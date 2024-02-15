@@ -69,5 +69,17 @@ public class ProductoDAO {
             return productos;
         return null;
     }
+    
+  //metodo para buscar los producto
+    public List<Producto> productosNombre(String nombre){
+        System.out.println("Buscando : " + nombre);
+        String sql = "SELECT * FROM productos WHERE nombre ILIKE '%" + nombre + "%'";//creamos la sentencia sql
+        Query q = em.createNativeQuery(sql, Producto.class);//creamos la consulta, asignamos la sentencia y el tipo de respuesta
+        //q.setParameter("nom",nombre);//asignamos el valor al parametro del id de la categoria
+        List<Producto> productos = q.getResultList();//obtenemos una lista de los resultados
+        if(productos != null && productos.size() > 0)//verificamos que obtuvimos al menos un resultado
+            return productos;//devolvemos la lista de los productos
+        return null;//si no se obtuvo nada devolvemos un null
+    }
 
 }

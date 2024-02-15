@@ -36,10 +36,6 @@ public class GestionCategorias {
         categoriaDao.remove(id);
     }
 
-    public Categoria buscarCategoriaId(int id){
-        return categoriaDao.read(id);
-    }
-
     public List<Categoria> getCategorias(){
         return categoriaDao.getAll();
     }

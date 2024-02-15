@@ -44,10 +44,6 @@ public class GestionProductos {
         return productoDao.getAll();
     }
     
-    public List<Producto> productoCategoria(int idcategoria){
-        return productoDao.productoCategoria(idcategoria);
-    }
-
     public Producto getClientePorProducto(int codigo) throws Exception{
         System.out.println("codigoProdGestion=" + codigo);
         System.out.println("clienteEnviado");
@@ -58,5 +54,13 @@ public class GestionProductos {
         System.out.println("codigoProdCategorias=" + codigo);
         System.out.println("categoriaEnviado");
         return productoDao.getProductosCatPorCodigo(codigo);
+    }
+    
+  //metodo para buscar productos por un string 
+    public List<Producto> productosNombre(String nombre) throws Exception{
+        List<Producto> productos = productoDao.productosNombre(nombre);
+        if(productos != null && productos.size() > 0)
+            return productos;
+        throw new Exception("No se hallaron producto");
     }
 }
