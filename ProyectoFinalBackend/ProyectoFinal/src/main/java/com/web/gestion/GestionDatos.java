@@ -30,8 +30,8 @@ public class GestionDatos {
     public void init(){
         System.out.println("iniciando");
         
-        //se ingresan datos iniciales para realizar las prubas con la aplicacion
         /*
+        //se ingresan datos iniciales para realizar las prubas con la aplicacion
         //usuario 1
         Usuario usuario = new Usuario();
         System.out.println(usuario);
@@ -67,53 +67,63 @@ public class GestionDatos {
         categoria.setId(1);
         categoria.setNombre("Belleza");
         categoria.setDescripcion("Productos para cuidado personal y cosmeticos");
+        categoria.setImagen("bell1.jpg");
         gCategorias.guardarCategoria(categoria);
 
         categoria = new Categoria();
         categoria.setId(2);
         categoria.setNombre("Computadoras");
         categoria.setDescripcion("Computadoras personales y portatiles");
+        categoria.setImagen("comp1.jpg");
         gCategorias.guardarCategoria(categoria);
 
         categoria = new Categoria();
+        categoria.setId(3);
         categoria.setNombre("Deportes");
         categoria.setDescripcion("Implementos para ejercicio y deportes");
+        categoria.setImagen("dep1.jpg");
         gCategorias.guardarCategoria(categoria);
 
         categoria = new Categoria();
         categoria.setId(4);
         categoria.setNombre("Electronicos");
         categoria.setDescripcion("Productos electronicos de uso diario");
+        categoria.setImagen("elec1.jpg");
         gCategorias.guardarCategoria(categoria);
 
         categoria = new Categoria();
         categoria.setId(5);
         categoria.setNombre("Hogar");
         categoria.setDescripcion("Decorativos para interiores y exteriores");
+        categoria.setImagen("hog1.jpg");
         gCategorias.guardarCategoria(categoria);
 
         categoria = new Categoria();
         categoria.setId(6);
         categoria.setNombre("Jugueteria");
         categoria.setDescripcion("Juguetes para niños");
+        categoria.setImagen("jug1.jpg");
         gCategorias.guardarCategoria(categoria);
 
         categoria = new Categoria();
         categoria.setId(7);
         categoria.setNombre("Libros");
         categoria.setDescripcion("Libros e implementos para la lectura");
+        categoria.setImagen("libro1.jpg");
         gCategorias.guardarCategoria(categoria);
 
         categoria = new Categoria();
         categoria.setId(8);
         categoria.setNombre("Ropa");
         categoria.setDescripcion("Ropa casual y formal para mujeres y hombres");
+        categoria.setImagen("ropa1.jpg");
         gCategorias.guardarCategoria(categoria);
 
         categoria = new Categoria();
         categoria.setId(9);
         categoria.setNombre("Salud");
         categoria.setDescripcion("Productos para el cuidado de la salud");
+        categoria.setImagen("salud1.jpg");
         gCategorias.guardarCategoria(categoria);
 
         //Productos
@@ -486,7 +496,7 @@ public class GestionDatos {
         producto.setImagen("salud4");
         producto.setCategoria(gCategorias.buscarCategoriaId(9));
         gProductos.guardarProducto(producto);
-
+        */
         //Carro 1
         Carro carro = new Carro();
         //carro.setId(1);
@@ -498,7 +508,7 @@ public class GestionDatos {
         Detalle detalle = new Detalle();
         //detalle.setId(1);
         detalle.setCarro(carro);
-        detalle.setProducto(producto);
+        detalle.setProducto(gProductos.leerProducto(36));
         detalle.setCantidad(5);
         detalle.setSubtotal();
 
@@ -539,7 +549,6 @@ public class GestionDatos {
 
         carro.setTotal(tot);
         gCarros.guardarCarro(carro);
-        */
 
         //metodos para listar y verificar que se ingresaron los datos
         //Listar Clientes

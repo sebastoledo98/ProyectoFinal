@@ -28,7 +28,6 @@ public class Carro{
 
     private String numero;// el numero del carro, se utiliza para generar la factura
     private double descuento;//el descuento que se aplica en la compra total
-    private double subtotal;//valor total de la compra sin aplicar el descuento
     private double total;//valor total de la compra aplicando el descuento
     private LocalDateTime fecha;//fecha en la que se crea el carro
     //estado del carrito
@@ -63,16 +62,6 @@ public class Carro{
     //asignar el numero de la factura
     public void setNumero(String numero){
         this.numero = numero;
-    }
-
-    //obtener el subtotal del carro
-    public double getSubtotal(){
-        return this.subtotal;
-    }
-
-    //asignar el subtotal del carro
-    public void setSubtotal(double subtotal){
-        this.subtotal = subtotal;
     }
 
     //obtener el total del carro

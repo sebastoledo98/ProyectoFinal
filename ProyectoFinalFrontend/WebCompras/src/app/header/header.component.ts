@@ -7,8 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  constructor(private router:Router){
 
+  usuario?: any;
+
+  constructor(private router:Router){
+    this.usuario = JSON.parse(localStorage.getItem('usuario')!);
+    console.log(this.usuario);
   }
 
   busqueda: String = "";

@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 public class Categoria {
 
     @Id//se especifica que el campo sera el id para la persistencia
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="idCategoria")//se especifica que el campo sera el id para la persistencia
     private int id;//campo del id del carro
 

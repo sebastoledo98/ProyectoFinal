@@ -16,7 +16,7 @@ public class Producto {
 
     @Id//se especifica que el campo sera el id para la persistencia
     @Column(name="idProducto")//se especifica que el campo sera el id para la persistencia
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;//campo del id del producto
 
     private String nombre;//nombre del producto

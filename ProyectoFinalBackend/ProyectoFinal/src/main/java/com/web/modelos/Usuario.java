@@ -13,7 +13,7 @@ public class Usuario {
 
     @Id//se especifica que el campo sera el id para la persistencia
     @Column(name="idUsuario")//se especifica que el campo sera el id para la persistencia
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)// se especifica que se autogeneren los valores de forma secuencial
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE)// se especifica que se autogeneren los valores de forma secuencial
     private int id;//campo del id del usuario
 
     private String usuario;//nombre de usuario para el login

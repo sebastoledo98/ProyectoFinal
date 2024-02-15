@@ -39,6 +39,12 @@ public class GestionCategorias {
         categoriaDao.remove(id);
     }
 
+
+    //metodo para buscar el objeto de la clase medante el id
+    public Categoria buscarCategoriaId(int id){
+        return categoriaDao.read(id);
+    }
+
     //metodos para listar todos los objetos de la clase
     public List<Categoria> getCategorias(){
         return categoriaDao.getAll();
