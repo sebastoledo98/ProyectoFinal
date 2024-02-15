@@ -6,13 +6,13 @@ Pagina Web de un Carrito de Compras
 
 ## Componentes
 
-+Angular 16.2.11
++ Angular 16.2.11
 
-+Java JDK 17, JPA, Servicios Rest
++ Java JDK 17, JPA, Servicios Rest
 
-+Servidor WildFly 29.0.0
++ Servidor WildFly 29.0.0
 
-+Base de Datos PostgreSQL 16.1
++ Base de Datos PostgreSQL 16.1
 
 ## Descripción
 
